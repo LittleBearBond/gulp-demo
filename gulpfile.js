@@ -16,9 +16,8 @@ gps.gulp.task('work', function() {
         console.error('请输入 gulp work --name XXX，xxx is projectname');
         return;
     }
-    name = "project/" + name;
 
-    fs.stat(path.join(__dirname, name), function(err, stats) {
+    fs.stat(path.join(__dirname, "project/" + name), function(err, stats) {
         if (err) {
             console.error(err)
             return;
@@ -27,8 +26,9 @@ gps.gulp.task('work', function() {
             console.error(name + '该项目还没有创建，请查看是否输入错误！');
             return;
         }
+        //初始话
         gulpProject(name);
+        //运行监听
+        gps.gulp.run('watch');
     });
-
-
 });

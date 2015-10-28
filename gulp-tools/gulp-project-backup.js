@@ -132,6 +132,7 @@ module.exports = function(cfgs) {
         browserSync.init({
             server: './dist',
             index: 'index.html',
+            directory: true,
             port: 3000,
             /*ui: {
                 port: 8080
