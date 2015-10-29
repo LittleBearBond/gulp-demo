@@ -15,8 +15,17 @@ module.exports = function() {
         reload: browserSync.reload,
         jpegtran: require('imagemin-jpegtran'),
         pngquant: require('imagemin-pngquant'),
+        //img
         cache: require('gulp-cache'),
         notify: require('gulp-notify'),
-        autoprefixer: require('gulp-autoprefixer')
+        autoprefixer: require('gulp-autoprefixer'),
+        babel: require('gulp-babel'),
+        //gulp-cached gulp-remember 编译所有文件
+        cached: require('gulp-cached'),
+        remember: require('gulp-remember'),
+        //传递更改过的文件
+        changed: require('gulp-changed'),
+        //只编译更改过的文件
+        watch: require('gulp-watch')
     }
 };

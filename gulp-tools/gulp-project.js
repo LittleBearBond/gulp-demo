@@ -43,29 +43,43 @@ module.exports = function(name) {
 
     // 样式处理
     gulp.task('css', function() {
-        var cssSrc = './' + projectSrc;
-        return gps.sass(cssSrc, {
+        return gps.sass(projectSrc, {
                 style: 'expanded',
                 sourcemap: true
             })
             .on('error', gps.sass.logError)
-            // For inline sourcemaps
-            //.pipe(gps.sourcemaps.write())
-            // For file sourcemaps
+            .pipe(gps.watch(projectSrc + '**/*.scss'))
             .pipe(gps.autoprefixer())
             .pipe(gps.sourcemaps.write('./'))
-            .pipe(gulp.dest(cssSrc));
+            .pipe(gulp.dest(projectSrc));
     });
 
-
+    // es6
+    gulp.task('es6', function() {
+        return gulp.src(projectSrc + '**/*.es6')
+            // `changed` 任务需要提前知道目标目录位置
+            // 才能找出哪些文件是被修改过的
+            .pipe(gps.watch(projectSrc + '**/*.es6'))
+            // 只有被更改过的文件才会通过这里
+            //.pipe(gps.cached('es6'))
+            .pipe(gps.sourcemaps.init())
+            .pipe(gps.babel())
+            .on('error', function(err) {
+                console.log(err);
+            })
+            //.pipe(gps.remember('es6'))
+            .pipe(gps.sourcemaps.write('./'))
+            .pipe(gulp.dest(projectSrc));
+    });
 
     // 监听任务 运行语句 gulp watch
     gulp.task('watch', ['web-server'], function() {
 
         // 监听css
-        gulp.watch(projectSrc + '**/*.scss', function() {
-            gulp.run('css');
-        });
+        gulp.watch(projectSrc + '**/*.scss', ['css']);
+
+        // 监听es6
+        gulp.watch(projectSrc + '**/*.es6', ['es6']); // 监视与 scripts 任务中同样的文件
 
     });
 

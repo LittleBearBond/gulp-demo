@@ -27,6 +27,8 @@ body {
   background-color: #ccc;
   padding-bottom: 20px;
   border-bottom: 20px solid #fcc;
+  font-size: 20px;
+  color: #facced;
 }
 .test .inner {
   margin-top: 20px;

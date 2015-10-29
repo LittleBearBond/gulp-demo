@@ -4,13 +4,12 @@ var gulpProject = require('./gulp-tools/gulp-project');
 
 //node
 var fs = require('fs'),
-    path = require('path');
-//简写
-var gps = gulpLoadPlugins;
+    path = require('path'),
+    gulp = gulpLoadPlugins.gulp;
 
 /* console==> log、info、warn、error、dir、time、timeEnd、trace、assert*/
-gps.gulp.task('work', function() {
-    var name = gps.gulp.env.name;
+gulp.task('work', function() {
+    var name = gulp.env.name;
 
     if (!name) {
         console.error('请输入 gulp work --name XXX，xxx is projectname');
@@ -29,6 +28,6 @@ gps.gulp.task('work', function() {
         //初始话
         gulpProject(name);
         //运行监听
-        gps.gulp.run('watch');
+        gulp.run('watch');
     });
 });
