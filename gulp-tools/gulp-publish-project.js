@@ -49,12 +49,6 @@ module.exports = function(name) {
         // 1. 找到图片
         gulp.src(projectSrc + '**/*.+(jpeg|jpg|png|gif|svg)')
             // 2. 压缩图片
-            // 只有新的或更动的图片会被压缩,发布的时候所有的都更新
-            /*.pipe(gps.cache(gps.imagemin({
-                progressive: true,
-                quality: '65-80',
-                interlaced: true
-            })))*/
             .pipe(gps.imagemin({
                 progressive: true,
                 quality: '65-80',
@@ -64,10 +58,7 @@ module.exports = function(name) {
                 console.log(e);
             })
             // 3. 另存图片
-            .pipe(gulp.dest(destSrc))
-            /*.pipe(gps.notify({
-                message: 'compress images ok !'
-            }));*/
+            .pipe(gulp.dest(destSrc));
     });
 
     gulp.task('pub-del', () => {
