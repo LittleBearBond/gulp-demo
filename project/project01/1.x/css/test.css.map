@@ -1,0 +1,1 @@
+{"version":3,"sources":["1.x/css/test.scss","test.css"],"names":[],"mappings":"AAAA;EACI,gBAAe;CCClB;ADCG;EACI,aAAY;CCCnB","file":"1.x/css/test.css","sourcesContent":[".a {\n    font-size: 25px;\n\n    .fr {\n        float: right;\n    }\n}\n",".a {\n  font-size: 25px;\n}\n.a .fr {\n  float: right;\n}\n\n\n"],"sourceRoot":"/source/"}
