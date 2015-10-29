@@ -22,7 +22,7 @@ module.exports = function(name) {
             .on('error', gps.sass.logError)
             //.pipe(gps.watch(projectSrc + '**/*.scss'))
             .pipe(gps.autoprefixer())
-            .pipe(gps.sourcemaps.write('./'))
+            //.pipe(gps.sourcemaps.write('./'))
             .pipe(gulp.dest(destSrc));
     });
 
@@ -33,14 +33,41 @@ module.exports = function(name) {
             //.pipe(gps.watch(projectSrc + '**/*.es6'))
             // 只有被更改过的文件才会通过这里
             .pipe(gps.cached('es6'))
-            .pipe(gps.sourcemaps.init())
+            //.pipe(gps.sourcemaps.init())
             .pipe(gps.babel())
             .on('error', function(err) {
                 console.log(err);
             })
             .pipe(gps.remember('es6'))
-            .pipe(gps.sourcemaps.write('./'))
+            //.pipe(gps.sourcemaps.write('./'))
             .pipe(gulp.dest(destSrc));
+    });
+
+
+    // 图片处理
+    gulp.task('pub-images', function() {
+        // 1. 找到图片
+        gulp.src(projectSrc + '**/*.+(jpeg|jpg|png|gif|svg)')
+            // 2. 压缩图片
+            // 只有新的或更动的图片会被压缩,发布的时候所有的都更新
+            /*.pipe(gps.cache(gps.imagemin({
+                progressive: true,
+                quality: '65-80',
+                interlaced: true
+            })))*/
+            .pipe(gps.imagemin({
+                progressive: true,
+                quality: '65-80',
+                interlaced: true
+            }))
+            .on('error', function(e) {
+                console.log(e);
+            })
+            // 3. 另存图片
+            .pipe(gulp.dest(destSrc))
+            /*.pipe(gps.notify({
+                message: 'compress images ok !'
+            }));*/
     });
 
     gulp.task('pub-del', () => {
@@ -49,7 +76,7 @@ module.exports = function(name) {
         });
     });
 
-    gulp.task('publish-project', ['pub-del', 'pub-css', 'pub-es6'], () => {
+    gulp.task('publish-project', ['pub-del', 'pub-css', 'pub-es6', 'pub-images'], () => {
         console.log('publish');
     });
 

@@ -72,7 +72,7 @@ module.exports = function(cfgs) {
 
     // 图片处理
     gulp.task('images', function() {
-        var imgSrc = src + 'images/**/*.*', //*.+(jpeg|jpg|png)'
+        var imgSrc = src + 'images/**/*.+(jpeg|jpg|png|gif|svg)', //*.+(jpeg|jpg|png)'
             imgDst = destSrc + 'images/';
         // 1. 找到图片
         gulp.src(imgSrc)
