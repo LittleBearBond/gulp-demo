@@ -24,8 +24,9 @@ module.exports = function() {
         cached: require('gulp-cached'),
         remember: require('gulp-remember'),
         //传递更改过的文件
-        changed: require('gulp-changed'),
+        changed: require('gulp-changed'),//*****
         //只编译更改过的文件
-        watch: require('gulp-watch')
+        watch: require('gulp-watch'),
+        del: require('del')
     }
 };
