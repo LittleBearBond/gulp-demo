@@ -5,3 +5,6 @@
 
 #启动监听
 >gulp work  --name project01(项目名字，在project下)
+
+#发布项目
+>gulp publish  --name project01(项目名字，在project下)
