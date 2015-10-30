@@ -11,6 +11,8 @@ module.exports = function() {
         concat: require('gulp-concat'), //合并文件
         clean: require('gulp-clean'), //清空文件夹
         sourcemaps: require('gulp-sourcemaps'),
+        gutil: require('gulp-util'),
+
         browserSync: browserSync,
         reload: browserSync.reload,
         jpegtran: require('imagemin-jpegtran'),
@@ -24,7 +26,7 @@ module.exports = function() {
         cached: require('gulp-cached'),
         remember: require('gulp-remember'),
         //传递更改过的文件
-        changed: require('gulp-changed'),//*****
+        changed: require('gulp-changed'), //*****
         //只编译更改过的文件
         watch: require('gulp-watch'),
         del: require('del')

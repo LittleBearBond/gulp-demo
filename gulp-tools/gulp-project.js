@@ -1,20 +1,21 @@
 module.exports = function(name) {
-
+    'use strict';
     // 引入 gulp及组件
-    var gulpLoadPlugins = require('./load-gulp-plugins')();
-    var gps = gulpLoadPlugins;
-    var gulp = gulpLoadPlugins.gulp;
+    let gulpLoadPlugins = require('./load-gulp-plugins')();
+    let utils = require('./utils')();
+    let gps = gulpLoadPlugins;
+    let gulp = gulpLoadPlugins.gulp;
 
     //Gulp 仅有 5 个方法就能组合出你需要的任务流程：task, run, watch, src, dest
 
     //资源文件路径
-    var projectSrc = 'project/' + name + '/';
+    let projectSrc = 'project/' + name + '/';
     //发布目录
-    var destSrc = __dirname + '/../dist';
+    let destSrc = __dirname + '/../dist';
     //根路径
-    var rootPath = __dirname + '/../';
+    let rootPath = __dirname + '/../';
 
-    var watchSrc = [];
+    let watchSrc = [];
     //监听这些文件，发生变化就reload 页面
     ['**/*.js', '**/*.css', '**/*.html'].forEach(function(val) {
         watchSrc.push(projectSrc + val);
@@ -64,9 +65,7 @@ module.exports = function(name) {
             //.pipe(gps.cached('es6'))
             .pipe(gps.sourcemaps.init())
             .pipe(gps.babel())
-            .on('error', function(err) {
-                console.log(err);
-            })
+            .on('error', utils.handleError)
             //.pipe(gps.remember('es6'))
             .pipe(gps.sourcemaps.write('./'))
             .pipe(gulp.dest(projectSrc));

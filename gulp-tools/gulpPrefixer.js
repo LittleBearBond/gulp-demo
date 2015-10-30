@@ -1,6 +1,6 @@
-var through = require('through2'); //Node Stream的简单封装，目的是让链式流操作更加简单
-var gutil = require('gulp-util'); //按照gulp的统一规范打印错误日志
-var PluginError = gutil.PluginError;
+let through = require('through2'); //Node Stream的简单封装，目的是让链式流操作更加简单
+let gutil = require('gulp-util'); //按照gulp的统一规范打印错误日志
+let PluginError = gutil.PluginError;
 
 // 常量
 const PLUGIN_NAME = 'gulp-prefixer';
@@ -16,7 +16,7 @@ function gulpPrefixer(prefixText) {
     // 创建一个 stream 通道，以让每个文件通过
     // 返回文件 stream
     return through.obj(function(file, enc, cb) {
-         // 如果文件为空，不做任何操作，转入下一个操作，即下一个 .pipe()
+        // 如果文件为空，不做任何操作，转入下一个操作，即下一个 .pipe()
         if (file.isNull()) {
             this.push(file);
             return cb();
