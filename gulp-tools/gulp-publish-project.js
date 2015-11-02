@@ -17,7 +17,7 @@ module.exports = function(name) {
     let rootPath = __dirname + '/../';
 
     // 样式处理
-    gulp.task('pub-css', function() {
+    gulp.task('pub-css', () => {
         return gps.sass(projectSrc, {
                 style: 'expanded',
                 sourcemap: true
@@ -31,7 +31,7 @@ module.exports = function(name) {
     });
 
     // es6
-    gulp.task('pub-es6', function() {
+    gulp.task('pub-es6', () => {
         return gulp.src(projectSrc + '**/*.es6')
             // 才能找出哪些文件是被修改过的
             //.pipe(gps.watch(projectSrc + '**/*.es6'))
@@ -49,7 +49,7 @@ module.exports = function(name) {
     });
 
     // 图片处理
-    gulp.task('pub-images', function() {
+    gulp.task('pub-images', () => {
         // 1. 找到图片
         gulp.src(projectSrc + '**/*.+(jpeg|jpg|png|gif|svg)')
             // 2. 压缩图片
@@ -63,7 +63,7 @@ module.exports = function(name) {
             .pipe(gulp.dest(destSrc));
     });
 
-    gulp.task('pub-copy', function() {
+    gulp.task('pub-copy', () => {
         gulp.src(projectSrc + "**/*.+(swf,ico,eot,svg,ttf,woff)")
             .pipe(gulp.dest(destSrc));
     });

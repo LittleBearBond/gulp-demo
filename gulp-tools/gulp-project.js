@@ -1,4 +1,4 @@
-module.exports = function(name) {
+module.exports = (name) => {
     'use strict';
     // 引入 gulp及组件
     let gulpLoadPlugins = require('./load-gulp-plugins')();
@@ -17,12 +17,12 @@ module.exports = function(name) {
 
     let watchSrc = [];
     //监听这些文件，发生变化就reload 页面
-    ['**/*.js', '**/*.css', '**/*.html'].forEach(function(val) {
+    ['**/*.js', '**/*.css', '**/*.html'].forEach((val) => {
         watchSrc.push(projectSrc + val);
     });
 
     // web服务
-    gulp.task('web-server', function() {
+    gulp.task('web-server', () => {
         gps.browserSync.init({
             server: {
                 baseDir: "./",
@@ -43,7 +43,7 @@ module.exports = function(name) {
     });
 
     // 样式处理
-    gulp.task('css', function() {
+    gulp.task('css', () => {
         return gps.sass(projectSrc, {
                 style: 'expanded',
                 sourcemap: true
@@ -56,7 +56,7 @@ module.exports = function(name) {
     });
 
     // es6
-    gulp.task('es6', function() {
+    gulp.task('es6', () => {
         return gulp.src(projectSrc + '**/*.es6')
             // `changed` 任务需要提前知道目标目录位置
             // 才能找出哪些文件是被修改过的
@@ -72,7 +72,7 @@ module.exports = function(name) {
     });
 
     // 监听任务 运行语句 gulp watch
-    gulp.task('watch', ['web-server'], function() {
+    gulp.task('watch', ['web-server'], () => {
 
         // 监听css
         gulp.watch(projectSrc + '**/*.scss', ['css']);

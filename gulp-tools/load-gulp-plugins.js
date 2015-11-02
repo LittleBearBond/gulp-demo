@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = () => {
     var browserSync = require('browser-sync').create();
     return {
         gulp: require('gulp'), //基础库
