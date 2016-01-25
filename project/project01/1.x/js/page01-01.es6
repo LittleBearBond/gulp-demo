@@ -6,6 +6,7 @@
  * @description
  */
 define((require, exports, module) => {
+    console.log('page01-01')
     return {
         log: () => {
             console.log(arguments);

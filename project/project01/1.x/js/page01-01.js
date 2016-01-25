@@ -9,6 +9,7 @@
 
 var _arguments = arguments;
 define(function (require, exports, module) {
+    console.log('page01-01');
     return {
         log: function log() {
             console.log(_arguments);

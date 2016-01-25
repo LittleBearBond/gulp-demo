@@ -29,6 +29,7 @@ module.exports = () => {
         changed: require('gulp-changed'), //*****
         //只编译更改过的文件
         watch: require('gulp-watch'),
-        del: require('del')
+        del: require('del'),
+        gulpFilter: require('gulp-filter')
     }
 };

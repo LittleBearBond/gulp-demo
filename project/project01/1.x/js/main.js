@@ -1,4 +1,4 @@
-/* @grunt-build */
+/* @gulp-build */
 /**
  * author           xj
  * @date            2015-10-28 14:28:53
@@ -11,6 +11,7 @@ var _arguments = arguments;
 define(function (require, exports, module) {
     require('./page01');
     require('./page02');
+    console.log('mian');
     return {
         log: function log() {
             console.log(_arguments);
