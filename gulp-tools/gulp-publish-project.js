@@ -3,7 +3,7 @@
 // 引入 gulp及组件
 const gps = require('./load-gulp-plugins')();
 const utils = require('./utils')();
-const rewriteUrl = require('../gulp-pligins/gulp-css-img-url');
+const rewriteUrl = require('../gulp-plugins/gulp-css-img-url');
 const gulp = gps.gulp;
 const gutil = gps.gutil;
 
