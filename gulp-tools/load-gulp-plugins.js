@@ -30,6 +30,10 @@ module.exports = () => {
         //只编译更改过的文件
         watch: require('gulp-watch'),
         del: require('del'),
+        //过滤
         gulpFilter: require('gulp-filter')
+        /*,urlAdjuster: require('gulp-css-url-adjuster'),
+        md5: require('md5')
+        */
     }
 };

@@ -37,6 +37,10 @@ body {
   color: #2980b9;
 }
 
+.test-path {
+  background: url("/project/project01/1.x/css/images/buy-vip.png");
+}
+
 
 
 /*# sourceMappingURL=../../1.x/css/index.css.map */

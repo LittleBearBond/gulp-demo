@@ -1,3 +1,4 @@
+/* global __dirname */
  'use strict';
  // 引入 gulp及组件
  let gulpLoadPlugins = require('./gulp-tools/load-gulp-plugins')();
