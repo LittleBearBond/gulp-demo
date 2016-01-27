@@ -44,7 +44,7 @@ module.exports = function(options) {
             }
             let replaceWithStr = '';
             let imagePath = '';
-            if (url.charAt(0) === '/') { // root-relative url
+            if (url.charAt(0) === '/') {
                 imagePath = path.join(baseDir, url);
                 // gutil.log(num++, 'abs', imagePath)
 

@@ -77,7 +77,7 @@ module.exports = function(name) {
         });
     });
 
-    gulp.task('publish-project', ['pub-del', 'pub-css', 'pub-es6', 'pub-images'], () => {
+    gulp.task('publish-project', ['pub-del', 'pub-images', 'pub-css', 'pub-es6'], () => {
         console.log('publish');
     });
 
