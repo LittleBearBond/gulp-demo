@@ -1,14 +1,14 @@
+"use strict";
 /* global __dirname */
 // 引入 gulp及组件
 const gulpLoadPlugins = require('./load-gulp-plugins')();
 const utils = require('./utils')();
-const rewriteUrl = require('./rewrite-url');
+const rewriteUrl = require('../gulp-pligins/gulp-css-img-url');
 
 const gps = gulpLoadPlugins;
 const gulp = gulpLoadPlugins.gulp;
 
 module.exports = function(name) {
-    'use strict';
     //Gulp 仅有 5 个方法就能组合出你需要的任务流程：task, run, watch, src, dest
     //资源文件路径
     let projectSrc = 'project/' + name + '/';
@@ -28,9 +28,7 @@ module.exports = function(name) {
             //自己修改
             //https://github.com/wpfpizicai/gulp-md5-plus/blob/master/index.js
             //https://github.com/gothy/gulp-css-urlversion/blob/master/index.js
-            /*.pipe(gps.urlAdjuster({
-                append: rewriteUrl
-            }))*/
+            .pipe(rewriteUrl())
             .pipe(gps.minifycss())
             //.pipe(gps.sourcemaps.write('./'))
             .pipe(gulp.dest(destSrc));

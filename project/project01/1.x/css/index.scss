@@ -21,6 +21,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 }
 body {
     background: url(../images/buy-vip.png) center center no-repeat;
+    background: url('../images/buy-vip.png') center center no-repeat;
+    background: url("../images/buy-vip.png") center center no-repeat;
+    background: url(./../images/buy-vip.png) center center no-repeat;
+    background: url("./../images/buy-vip.png") center center no-repeat;
+    background: url('./../images/buy-vip.png') center center no-repeat;
 }
 .test {
     padding-top: 20px;
@@ -38,5 +43,9 @@ body {
     }
 }
 .test-path{
-    background:url('/project/project01/1.x/css/images/buy-vip.png');
+    background:url(/project/project01/1.x/images/buy-vip.png);
+    background:url(/project/project01/1.x/images/buy-vip.png?base64);
+    background:url(/project/project01/1.x/images/buy-vip.png?strict);
+    background:url('/project/project01/1.x/images/buy-vip.png');
+    background:url("/project/project01/1.x/images/buy-vip.png");
 }
