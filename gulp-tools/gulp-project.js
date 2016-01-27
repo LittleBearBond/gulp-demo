@@ -1,8 +1,9 @@
 // 引入 gulp及组件
-const gulpLoadPlugins = require('./load-gulp-plugins')();
+const gps = require('./load-gulp-plugins')();
 const utils = require('./utils')();
-const gps = gulpLoadPlugins;
-const gulp = gulpLoadPlugins.gulp;
+const gulp = gps.gulp;
+// const gutil = gps.gutil;
+
 //文件过滤
 const regFilterFiles = /\/\*+\s*\@gulp-build\s*\*+\//gim;
 const filter = gps.gulpFilter(function(file) {
@@ -21,8 +22,8 @@ module.exports = (name) => {
 
     let es6Path = projectSrc + '**/*.es6';
     let sassPath = projectSrc + '**/*.scss';
-
     let watchSrc = [];
+
     //监听这些文件，发生变化就reload 页面
     ['**/*.js', '**/*.css', '**/*.html'].forEach((val) => {
         watchSrc.push(projectSrc + val);
@@ -82,10 +83,8 @@ module.exports = (name) => {
 
     // 监听任务 运行语句 gulp watch
     gulp.task('watch', ['web-server'], () => {
-
         // 监听css
         gulp.watch(sassPath, ['css']);
-
         // 监听es6
         gulp.watch(es6Path, ['es6']); // 监视与 scripts 任务中同样的文件
 

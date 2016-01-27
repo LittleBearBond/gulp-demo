@@ -1,12 +1,11 @@
 "use strict";
 /* global __dirname */
 // 引入 gulp及组件
-const gulpLoadPlugins = require('./load-gulp-plugins')();
+const gps = require('./load-gulp-plugins')();
 const utils = require('./utils')();
 const rewriteUrl = require('../gulp-pligins/gulp-css-img-url');
-
-const gps = gulpLoadPlugins;
-const gulp = gulpLoadPlugins.gulp;
+const gulp = gps.gulp;
+const gutil = gps.gutil;
 
 module.exports = function(name) {
     //Gulp 仅有 5 个方法就能组合出你需要的任务流程：task, run, watch, src, dest
@@ -73,12 +72,12 @@ module.exports = function(name) {
 
     gulp.task('pub-del', () => {
         gps.del([destSrc + "**"]).then(paths => {
-            console.log('Deleted files and folders:\n', paths.join('\n'));
+            gutil.log('Deleted files and folders:\n', paths.join('\n'));
         });
     });
 
     gulp.task('publish-project', ['pub-del', 'pub-images', 'pub-css', 'pub-es6'], () => {
-        console.log('publish');
+        gutil.log('publish');
     });
 
 };
