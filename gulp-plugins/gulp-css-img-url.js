@@ -5,6 +5,7 @@
  * @email           littlebearbond@qq.com
  * @description
  */
+//https://www.zybuluo.com/bornkiller/note/32907
 const path = require('path');
 const crypto = require('crypto');
 const fs = require('fs');
@@ -23,19 +24,20 @@ module.exports = function(options) {
     let baseDir = options.baseDir || process.cwd();
 
     return through.obj(function(file, enc, cb) {
+        // 如果文件为空，不做任何操作
         if (file.isNull()) {
             cb(null, file);
             return;
         }
-
+        // 插件不支持对 Stream 对直接操作，跑出异常
         if (file.isStream()) {
-            cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            let err = new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported');
+            this.emit('error', err);
+            cb(err);
             return;
         }
 
-        let incoming = file.contents.toString();
-
-        let outgoing = incoming.replace(/url(?:\([\s]*([^;,}]*)[\s]*\))/gim, function(str, url) {
+        let outgoing = file.contents.toString().replace(/url(?:\([\s]*([^;,}]*)[\s]*\))/gim, function(str, url) {
             url = url.replace(/[\'|\"]/g, '').trim();
 
             //base 64 或者绝对路径不做处理
@@ -47,7 +49,6 @@ module.exports = function(options) {
             if (url.charAt(0) === '/') {
                 imagePath = path.join(baseDir, url);
                 // gutil.log(num++, 'abs', imagePath)
-
             } else { // this path should be threated as relative
                 // gutil.log(PLUGIN_NAME + ': Using a relative path in ' + path.basename(file.path) + ": " + url);
                 imagePath = path.resolve(path.dirname(file.path), url);
@@ -77,12 +78,14 @@ module.exports = function(options) {
 
         try {
             file.contents = new Buffer(outgoing);
+            // 传递处理后数据给下一个插件
             this.push(file);
         } catch (err) {
             this.emit('error', new gutil.PluginError(PLUGIN_NAME, err, {
                 fileName: file.path
             }));
         }
+        //文件处理完毕
         cb();
     });
 };

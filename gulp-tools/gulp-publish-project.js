@@ -28,6 +28,7 @@ module.exports = function(name) {
             //https://github.com/wpfpizicai/gulp-md5-plus/blob/master/index.js
             //https://github.com/gothy/gulp-css-urlversion/blob/master/index.js
             .pipe(rewriteUrl())
+            .on('error', utils.handleError)
             .pipe(gps.minifycss())
             //.pipe(gps.sourcemaps.write('./'))
             .pipe(gulp.dest(destSrc));
