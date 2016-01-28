@@ -73,7 +73,7 @@ module.exports = function(name) {
 
     gulp.task('pub-del', () => {
         gps.del([destSrc + "**"]).then(paths => {
-            gutil.log('Deleted files and folders:\n', paths.join('\n'));
+            gutil.log('Deleted files and folders:\n' /*, paths.join('\n')*/ );
         });
     });
 
