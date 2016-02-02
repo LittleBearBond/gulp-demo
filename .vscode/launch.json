@@ -5,7 +5,7 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "gulpfile.js",
+			"program": "gulp-plugins/test-shell.js",
 			"stopOnEntry": false,
 			"args": [],
 			"cwd": ".",
