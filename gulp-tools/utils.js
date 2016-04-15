@@ -1,3 +1,4 @@
+'use strict';
 /**
  * author           xj
  * @date            2015-10-30 10:58:05
@@ -5,7 +6,6 @@
  * @description
  */
 module.exports = () => {
-    'use strict';
     // 引入 gulp及组件
     let gulpLoadPlugins = require('./load-gulp-plugins')();
     let gutil = gulpLoadPlugins.gutil;
